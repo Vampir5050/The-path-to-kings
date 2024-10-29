@@ -6,7 +6,9 @@ public class Hero : MonoBehaviour
 {
     Animator animator;
     Rigidbody rigidbody;
-    
+
+    float moveSpeed = 2f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,11 +21,13 @@ public class Hero : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 movement = new Vector3(horizontalInput, 0, verticalInput);
-        rigidbody.MovePosition(transform.position + movement * Time.deltaTime);
+        rigidbody.MovePosition(transform.position + movement * moveSpeed * Time.deltaTime);
         if (Input.GetKey(KeyCode.W))
             animator.SetInteger("State", 1);
         else
             animator.SetInteger("State", 0);
 
     }
+
+   
 }
