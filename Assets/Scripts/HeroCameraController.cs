@@ -6,16 +6,13 @@ public class HeroCameraController : MonoBehaviour
 {
     public Camera cam;
     public Transform target;
-    public float speedX = 360f;
-    public float speedY = 240f;
-    public float limitY = 40f;
+    public float speedX = 2f;
     public float minDistance = 1.5f;
     public float hideDistance =  2f;
     public LayerMask obstacles;
     public LayerMask noPlayer;
     float _maxDistance;
     Vector3 _localPosition;
-    float _currentYRotation;
     LayerMask _camOrigin;
 
     Vector3 _position
@@ -44,18 +41,7 @@ public class HeroCameraController : MonoBehaviour
     void CameraRotation()
     {
         float mX = Input.GetAxis("Mouse X");
-        float mY = Input.GetAxis("Mouse Y");
-
-        if (mY != 0)
-        {
-            float tmp = Mathf.Clamp(_currentYRotation + mY * speedY * Time.deltaTime, -limitY, limitY);
-            if (tmp != _currentYRotation)
-            {
-                float rot = tmp - _currentYRotation;
-                transform.RotateAround(target.position, transform.right, rot);
-                _currentYRotation = tmp;
-            }
-        }
+      
         if (mX != 0)
         {
             transform.RotateAround(target.position, Vector3.up, mX*speedX*Time.deltaTime);
