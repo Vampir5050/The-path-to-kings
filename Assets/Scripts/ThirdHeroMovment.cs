@@ -31,10 +31,25 @@ public class ThirdHeroMovment : MonoBehaviour
     void Update()
     {
         Movement();
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)||Input.GetKeyDown(KeyCode.W))
         {
             animator.SetInteger("State", 1);
             Rotate();
+        }
+        else if (Input.GetKey(KeyCode.S) || Input.GetKeyDown(KeyCode.S))
+        {
+            animator.SetInteger("State", 2);
+            Rotate();
+        }
+        else if (Input.GetKey(KeyCode.A) || Input.GetKeyDown(KeyCode.A))
+        {
+            animator.SetInteger("State", 3);
+           
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKeyDown(KeyCode.D))
+        {
+            animator.SetInteger("State", 4);
+            
         }
         else
             animator.SetInteger("State", 0);
