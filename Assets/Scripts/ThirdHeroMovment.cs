@@ -51,6 +51,10 @@ public class ThirdHeroMovment : MonoBehaviour
             animator.SetInteger("State", 4);
             
         }
+        //else if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    animator.SetInteger("State", 5);
+        //}
         else
             animator.SetInteger("State", 0);
         

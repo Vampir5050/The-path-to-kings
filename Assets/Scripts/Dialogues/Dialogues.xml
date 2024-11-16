@@ -1,0 +1,25 @@
+<dialogue>
+	<node>
+		<npctext>Здравствуй</npctext>
+		<answers><answer tonode="1">
+			<text>У тебя есть работа для меня?</text>
+		</answer>
+		<answer tonode="0">
+			<text>Я должен идти</text>
+			<dialend>true</dialend>
+		</answer>
+		</answers>
+	</node>
+	<node>
+		<npctext>Да, конечно. Мне нужно что бы ты принес мне 5 грибов из леса. Справишься?</npctext>
+		<answers><answer tonode="1">
+			<text>Я возьму за эту работу</text>
+			<dialend>true</dialend>
+		</answer>
+		<answer tonode="0">
+			<text>Такая работа мне не нужна. Пока.</text>
+			<dialend>true</dialend>
+		</answer>
+		</answers>
+	</node>
+</dialogue>
