@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -18,6 +19,8 @@ public class ThirdHeroMovment : MonoBehaviour
     readonly string STR_HORIZONTAL = "Horizontal";
 
     const float DISTANCE_OFFSET_CAMERA = 5f;
+
+    public static bool LockMovement = false;
    
     
     void Start()
@@ -30,35 +33,42 @@ public class ThirdHeroMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        if (Input.GetKey(KeyCode.W)||Input.GetKeyDown(KeyCode.W))
+
+        if (LockMovement == false)
         {
-            animator.SetInteger("State", 1);
-            Rotate();
+            Movement();
+            if (Input.GetKey(KeyCode.W) || Input.GetKeyDown(KeyCode.W))
+            {
+                animator.SetInteger("State", 1);
+                Rotate();
+            }
+            else if (Input.GetKey(KeyCode.S) || Input.GetKeyDown(KeyCode.S))
+            {
+                animator.SetInteger("State", 2);
+                Rotate();
+            }
+            else if (Input.GetKey(KeyCode.A) || Input.GetKeyDown(KeyCode.A))
+            {
+                animator.SetInteger("State", 3);
+
+            }
+            else if (Input.GetKey(KeyCode.D) || Input.GetKeyDown(KeyCode.D))
+            {
+                animator.SetInteger("State", 4);
+
+            }
+            //else if (Input.GetKeyDown(KeyCode.Mouse0))
+            //{
+            //    animator.SetInteger("State", 5);
+            //}
+            else
+                animator.SetInteger("State", 0);
         }
-        else if (Input.GetKey(KeyCode.S) || Input.GetKeyDown(KeyCode.S))
-        {
-            animator.SetInteger("State", 2);
-            Rotate();
-        }
-        else if (Input.GetKey(KeyCode.A) || Input.GetKeyDown(KeyCode.A))
-        {
-            animator.SetInteger("State", 3);
-           
-        }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKeyDown(KeyCode.D))
-        {
-            animator.SetInteger("State", 4);
-            
-        }
-        //else if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    animator.SetInteger("State", 5);
-        //}
-        else
-            animator.SetInteger("State", 0);
+       
         
     }
+
+   
 
     private void Movement()
     {

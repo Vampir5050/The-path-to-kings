@@ -5,9 +5,10 @@ using System.Xml.Serialization;
 public class Node
 {
     [XmlElement("npctext")]
-    public string npcText;
+    public string NpcText;
 
     [XmlArray("answers")]
     [XmlArrayItem("answer")]
     public Answer[] answers;
 }
+

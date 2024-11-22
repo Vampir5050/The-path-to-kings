@@ -1,25 +1,52 @@
 <dialogue>
 	<node>
-		<npctext>Здравствуй</npctext>
-		<answers><answer tonode="1">
+		<npctext>Здравствуй.</npctext>
+		<answers>
+			<answer tonode="1" needquestvalue="0">
 			<text>У тебя есть работа для меня?</text>
+			<questname>Quest1</questname>
+		</answer>
+		<answer tonode="2" needquestvalue="1">
+			<text>Напомни что нужно сделать.</text>
+			<questname>Quest1</questname>
 		</answer>
 		<answer tonode="0">
-			<text>Я должен идти</text>
+			<text>Я должен идти.</text>
 			<dialend>true</dialend>
 		</answer>
+			<answer tonode="3" needquestvalue="2">Я принес то что ты просил.</answer>
 		</answers>
 	</node>
 	<node>
 		<npctext>Да, конечно. Мне нужно что бы ты принес мне 5 грибов из леса. Справишься?</npctext>
-		<answers><answer tonode="1">
-			<text>Я возьму за эту работу</text>
+		<answers><answer tonode="0" questvalue="1">
+			<text>Я возьму за эту работу.</text>
 			<dialend>true</dialend>
+			<questname>Quest1</questname>
 		</answer>
 		<answer tonode="0">
 			<text>Такая работа мне не нужна. Пока.</text>
 			<dialend>true</dialend>
 		</answer>
+		</answers>
+	</node>
+	<node>
+		<npctext>Принеси из леса 5 грибов.</npctext>
+		<answers>
+			<answer tonode="0" needquestvalue="1">
+				<text>Спасибо что напомнил.</text>
+				<dialend>true</dialend>
+			</answer>
+		</answers>
+	</node>
+	<node>
+		<npctext>Спасибо большое. Вот твоя награда</npctext>
+		<answers>
+			<answer tonode="0" needquestvalue="2" questvalue="3" rewardgold="200">
+				<text>Всегда рад помочь</text>
+				<dialend>true</dialend>
+				<questname>Quest1</questname>
+			</answer>
 		</answers>
 	</node>
 </dialogue>

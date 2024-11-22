@@ -10,4 +10,12 @@ public class Answer
     public string text;
     [XmlElement("dialend")]
     public string end;
+
+
+    [XmlAttribute("questvalue")]
+    public  int QuestValue;
+    [XmlAttribute("needquestvalue")]
+    public  int NeedQuestValue;
+    [XmlAttribute("questname")]
+    public  string QuestName;
 }
