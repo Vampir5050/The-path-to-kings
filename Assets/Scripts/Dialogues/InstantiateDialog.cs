@@ -32,7 +32,7 @@ public class InstantiateDialog : MonoBehaviour
         answers.Clear();
         for (int i = 0; i < dialogue.nodes[currentNode].answers.Length; i++)
         {
-            if (dialogue.nodes[currentNode].answers[i].QuestName == "" || dialogue.nodes[currentNode].answers[i].NeedQuestValue == PlayerPrefs.GetInt(dialogue.nodes[currentNode].answers[i].QuestName))
+            if (dialogue.nodes[currentNode].answers[i].QuestName == null || dialogue.nodes[currentNode].answers[i].NeedQuestValue == PlayerPrefs.GetInt(dialogue.nodes[currentNode].answers[i].QuestName))
                 answers.Add(dialogue.nodes[currentNode].answers[i]);
         }
     }
