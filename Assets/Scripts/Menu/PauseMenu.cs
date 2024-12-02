@@ -19,6 +19,7 @@ public class PauseMenu : MonoBehaviour
             if (_pauseGame == true)
             {
                 Resume();
+                Cursor.visible = false;
             }
             else
             {
@@ -31,6 +32,7 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         textInteraction.enabled = false;
+        InstantiateDialog.ShowDialog = false;
         Cursor.visible = true;
         pauseGameMenu.SetActive(true);
         Time.timeScale = 0f;

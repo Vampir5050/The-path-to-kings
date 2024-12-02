@@ -9,7 +9,7 @@ public class InstantiateDialog : MonoBehaviour
     [SerializeField] int currentNode;
     [SerializeField] GameObject buttonInteraction;
     [SerializeField] GUISkin skin;
-    public bool ShowDialog;
+    public static bool ShowDialog;
     public List<Answer> answers = new List<Answer>();
     TextMeshProUGUI textInteraction;
 
