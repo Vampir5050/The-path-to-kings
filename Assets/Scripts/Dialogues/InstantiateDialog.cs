@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class InstantiateDialog : MonoBehaviour
@@ -6,16 +7,20 @@ public class InstantiateDialog : MonoBehaviour
     [SerializeField] TextAsset text;
     [SerializeField] Dialogue dialogue;
     [SerializeField] int currentNode;
-    [SerializeField] GameObject e;
+    [SerializeField] GameObject buttonInteraction;
     [SerializeField] GUISkin skin;
     public bool ShowDialog;
     public List<Answer> answers = new List<Answer>();
+    TextMeshProUGUI textInteraction;
 
 
 
 
     private void Start()
     {
+        textInteraction = buttonInteraction.GetComponent<TextMeshProUGUI>();
+       
+        
         dialogue = Dialogue.Load(text);
         skin = Resources.Load("Skin") as GUISkin;
         UpdateAnswers();
@@ -39,16 +44,19 @@ public class InstantiateDialog : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        e.SetActive(true);
-        if(Input.GetKey(KeyCode.E))
+        textInteraction.enabled = true;
+        if (Input.GetKey(KeyCode.E))
+        {
             ShowDialog = true;
+        }
+           
 
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        e.SetActive(false);
+        textInteraction.enabled = false;
     }
 
     private void OnGUI()

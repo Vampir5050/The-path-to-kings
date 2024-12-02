@@ -1,10 +1,17 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] bool _pauseGame;
-    [SerializeField] GameObject pauseGameMenu;
+    [SerializeField] GameObject pauseGameMenu, buttonIneraction;
+    TextMeshProUGUI textInteraction;
+
+    private void Start()
+    {
+        textInteraction = buttonIneraction.GetComponent<TextMeshProUGUI>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -23,6 +30,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        textInteraction.enabled = false;
         Cursor.visible = true;
         pauseGameMenu.SetActive(true);
         Time.timeScale = 0f;

@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class SpawMushroom : MonoBehaviour
 {
-    [SerializeField] GameObject mushrooms;
+    [SerializeField] GameObject mushroom;
     public List<Transform> SpawnPoints;
+
+    private void Awake()
+    {
+        Spawn();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        Spawn();
+        
     }
 
     // Update is called once per frame
@@ -22,8 +27,8 @@ public class SpawMushroom : MonoBehaviour
     {
         for (int i = 0; i < SpawnPoints.Count; i++)
         {
+            Instantiate(mushroom, SpawnPoints[i].transform.position, Quaternion.identity);
             
-            Instantiate(mushrooms, SpawnPoints[i].transform.position, Quaternion.identity);
         }
     }
 }

@@ -50,12 +50,12 @@ public class ThirdHeroMovment : MonoBehaviour
             else if (Input.GetKey(KeyCode.A) || Input.GetKeyDown(KeyCode.A))
             {
                 animator.SetInteger("State", 3);
-
+                Rotate();
             }
             else if (Input.GetKey(KeyCode.D) || Input.GetKeyDown(KeyCode.D))
             {
                 animator.SetInteger("State", 4);
-
+                Rotate();
             }
             //else if (Input.GetKeyDown(KeyCode.Mouse0))
             //{
