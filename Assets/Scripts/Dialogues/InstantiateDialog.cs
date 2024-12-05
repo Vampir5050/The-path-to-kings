@@ -12,6 +12,7 @@ public class InstantiateDialog : MonoBehaviour
     public static bool ShowDialog;
     public List<Answer> answers = new List<Answer>();
     TextMeshProUGUI textInteraction;
+    
 
 
 

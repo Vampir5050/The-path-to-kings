@@ -68,7 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triger: {fileID: 2611466855188207048}
-  e: {fileID: 7439256773965985627, guid: 55bc46d1679decc4abc5ee4cfb3a4c81, type: 3}
+  buttonInteraction: {fileID: 0}
+  ItemName: Mushroom
 --- !u!1001 &6088782951944502712
 PrefabInstance:
   m_ObjectHideFlags: 0
