@@ -21,8 +21,9 @@ public class ThirdHeroMovment : MonoBehaviour
     const float DISTANCE_OFFSET_CAMERA = 5f;
 
     public static bool LockMovement = false;
-   
-    
+    public static bool  walking;
+
+
     void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -54,7 +55,9 @@ public class ThirdHeroMovment : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.D) || Input.GetKeyDown(KeyCode.D))
             {
+                
                 animator.SetInteger("State", 4);
+               
                 Rotate();
             }
             //else if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -62,7 +65,13 @@ public class ThirdHeroMovment : MonoBehaviour
             //    animator.SetInteger("State", 5);
             //}
             else
+            {
+                walking = false;
+                SoundManager.Instance.PlayStepsSound();
                 animator.SetInteger("State", 0);
+                
+            }
+                
         }
        
         
@@ -81,7 +90,8 @@ public class ThirdHeroMovment : MonoBehaviour
         }
         _direction.y -= _characters.Gravity * Time.deltaTime;
         Vector3 dir = _direction * _characters.MovementSpeed * Time.deltaTime;
-
+        walking = true;
+        SoundManager.Instance.PlayStepsSound();
         _controller.Move(dir);
     }
 
