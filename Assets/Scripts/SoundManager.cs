@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource dropItemSound, pickupaudioSoud, stepsSound;
 
     //Music
-    [SerializeField] AudioSource startingZoneBGMusic;
+    [SerializeField] public AudioSource startingZoneBGMusic;
 
     private void Awake()
     {

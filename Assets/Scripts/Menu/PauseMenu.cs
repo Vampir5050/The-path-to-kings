@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] GameObject pauseGameMenu, uiCanvas, menuCanvas, buttonIneraction;
     [SerializeField] bool _pauseGame;
-    [SerializeField] GameObject pauseGameMenu, buttonIneraction;
     TextMeshProUGUI textInteraction;
 
     private void Start()
@@ -14,23 +14,21 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)&&!_pauseGame)
         {
-            if (_pauseGame == true)
-            {
-                Resume();
-                Cursor.visible = false;
-            }
-            else
-            {
-                Pause();
-            }
-            
+            Pause();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && _pauseGame)
+        {
+            Resume();
         }
     }
 
     public void Pause()
     {
+        SoundManager.Instance.startingZoneBGMusic.Pause();
+        uiCanvas.SetActive(false);
+        menuCanvas.SetActive(true);
         textInteraction.enabled = false;
         InstantiateDialog.ShowDialog = false;
         Cursor.visible = true;
@@ -42,6 +40,9 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         Cursor.visible = false;
+        SoundManager.Instance.startingZoneBGMusic.Play();
+        menuCanvas.SetActive(false);
+        uiCanvas.SetActive(true);
         pauseGameMenu.SetActive(false);
         Time.timeScale = 1f;
         _pauseGame = false;
@@ -50,5 +51,10 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void TempSaveGame()
+    {
+        SaveManager.Instance.SaveGame();
     }
 }

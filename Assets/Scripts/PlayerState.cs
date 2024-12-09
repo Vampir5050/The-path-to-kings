@@ -8,6 +8,7 @@ public class PlayerState : MonoBehaviour
 
     public float currentHealth;
     public float maxHealth;
+    public GameObject playerBody;
 
     private void Awake()
     {
