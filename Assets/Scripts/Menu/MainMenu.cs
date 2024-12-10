@@ -9,15 +9,12 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        LoadGameBTN.onClick.AddListener(() =>
-        {
-            SaveManager.Instance.StartLoadedGame();
-        });
+       
     }
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("SampleScene");
     }
     public void ExitGame()
     {

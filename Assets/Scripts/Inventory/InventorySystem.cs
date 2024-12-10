@@ -122,9 +122,12 @@ public class InventorySystem : MonoBehaviour
 
     void TriggerPickupPopUp(string itemName,Sprite itemSprite)
     {
+        if (!SaveManager.Instance.isLoading)
+        {
+            pickupName.text = "Вы подобрали - " + itemName;
+            pickupImage.sprite = itemSprite;
+            pickupAllert.GetComponent<Animation>().Play("PickupPopUp");
+        }
         
-        pickupName.text = "Вы подобрали - " + itemName;
-        pickupImage.sprite = itemSprite;
-        pickupAllert.GetComponent<Animation>().Play("PickupPopUp");
     }
 }
