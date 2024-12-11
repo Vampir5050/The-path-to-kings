@@ -109,12 +109,14 @@ public class SaveManager : MonoBehaviour
     public void LoadGame(int slotNumber)
     {
         SetPlayerData(LoadAllGameData(slotNumber).playerData);
+        SoundManager.Instance.startingZoneBGMusic.Play();
         isLoading = false;
         DisableLoadingScreen();
     }
 
     private void SetPlayerData(PlayerData playerData)
     {
+        SoundManager.Instance.startingMenuAndPause.Stop();
         isLoading = true;
         PlayerState.Instance.currentHealth = playerData.playerStats;
 

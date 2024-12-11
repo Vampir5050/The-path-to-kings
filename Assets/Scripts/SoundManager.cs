@@ -10,7 +10,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource dropItemSound, pickupaudioSoud, stepsSound;
 
     //Music
-    [SerializeField] public AudioSource startingZoneBGMusic;
+     public AudioSource startingZoneBGMusic;
+     public AudioSource startingMenuAndPause;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class SoundManager : MonoBehaviour
         {
             Instance = this;
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     public void PlayDropSound()

@@ -2,25 +2,27 @@
 	<node>
 		<npctext>Здравствуй.</npctext>
 		<answers>
-			<answer tonode="1" needquestvalue="0" questname="Quest1">
+			<answer tonode="1" needquestvalue="0" questname="Mushroom" >
 			<text>У тебя есть работа для меня?</text>
 		</answer>
-		<answer tonode="2" needquestvalue="1" questname="Quest1">
+		<answer tonode="2" needquestvalue="1" questname="Mushroom" >
 			<text>Напомни что нужно сделать.</text>
 		</answer>
 		<answer tonode="0">
 			<text>Я должен идти.</text>
 			<dialend>true</dialend>
 		</answer>
-			<answer tonode="3" needquestvalue="2" questname="Quest1">
+			<answer tonode="3" needquestvalue="2" questname="Mushroom" >
 				<text>Я принес то что ты просил.</text>
 			</answer>
 		</answers>
 	</node>
 	<node>
 		<npctext>Да, конечно. Мне нужно что бы ты принес мне 5 грибов из леса. Справишься?</npctext>
-		<answers><answer tonode="0" questvalue="1" questname="Quest1">
-			<text>Я возьму за эту работу.</text>
+		<answers><answer tonode="0" questvalue="1" questname="Mushroom">
+			<text>Я возьмусь за эту работу.</text>
+			<title>По грибы</title>
+			<description>Принести 5 грибов</description>
 			<dialend>true</dialend>
 		</answer>
 		<answer tonode="0">
@@ -41,7 +43,7 @@
 	<node>
 		<npctext>Спасибо большое. Вот твоя награда</npctext>
 		<answers>
-			<answer tonode="0" needquestvalue="2" questvalue="3" questname="Quest1" rewardgold="200">
+			<answer tonode="0" needquestvalue="2" questvalue="3" questname="Mushroom" rewardgold="200">
 				<text>Всегда рад помочь</text>
 				<dialend>true</dialend>
 			</answer>

@@ -25,12 +25,13 @@ public class SettingsManager : MonoBehaviour
         {
             Instance = this;
         }
+        
     }
     private void Update()
     {
         masterValue.GetComponent<TextMeshProUGUI>().text = "" + (masterSlider.value) + "";
         musicValue.GetComponent<TextMeshProUGUI>().text = "" + (musicSlider.value) + "";
         effectValue.GetComponent<TextMeshProUGUI>().text = "" + (effectsSlider.value) + "";
-
+        SoundManager.Instance.startingMenuAndPause.volume = masterSlider.value / 100;
     }
 }

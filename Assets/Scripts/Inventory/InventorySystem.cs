@@ -130,4 +130,30 @@ public class InventorySystem : MonoBehaviour
         }
         
     }
+    public int CheckCountItemName(string questName)
+    {
+        int count = 0;
+        foreach(string itemName in itemList)
+        {
+            if(itemName == questName)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    //public void RemoveItems(int count, string questName)
+    //{
+    //    int listCount = itemList.Count;
+    //    for(int i = 0; i < listCount; i++)
+    //    {
+    //        if (itemList[i] == questName && count > 0)
+    //        {
+    //            itemList.Remove(questName);
+    //            count--;
+    //        }
+    //    }
+       
+    //    PlayerPrefs.SetInt(questName, 3);
+    //}
 }

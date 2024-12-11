@@ -20,11 +20,12 @@ public class InstantiateDialog : MonoBehaviour
     private void Start()
     {
         textInteraction = buttonInteraction.GetComponent<TextMeshProUGUI>();
-       
-        
+
+        PlayerPrefs.DeleteAll();
         dialogue = Dialogue.Load(text);
         skin = Resources.Load("Skin") as GUISkin;
         UpdateAnswers();
+        
     }
 
     private void Update()
@@ -76,6 +77,7 @@ public class InstantiateDialog : MonoBehaviour
                     if (answers[i].QuestValue > 0)
                     {
                         PlayerPrefs.SetInt(answers[i].QuestName, answers[i].QuestValue);
+                        QuestSystem.Instance.GetQuest(answers[i].QuestName,answers[i].title, answers[i].description);
                     }
                     if (answers[i].end == "true")
                     {

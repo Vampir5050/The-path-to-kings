@@ -8,6 +8,10 @@ public class Answer
     public int nextNode;
     [XmlElement("text")]
     public string text;
+    [XmlElement("title")]
+    public string title;
+    [XmlElement("description")]
+    public string description;
     [XmlElement("dialend")]
     public string end;
 
@@ -18,4 +22,7 @@ public class Answer
     public  int NeedQuestValue;
     [XmlAttribute("questname")]
     public  string QuestName;
+    [XmlAttribute("questdescription")]
+    public string QuestDescription;
+    
 }
