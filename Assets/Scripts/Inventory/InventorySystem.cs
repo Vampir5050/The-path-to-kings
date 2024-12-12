@@ -142,18 +142,20 @@ public class InventorySystem : MonoBehaviour
         }
         return count;
     }
-    //public void RemoveItems(int count, string questName)
-    //{
-    //    int listCount = itemList.Count;
-    //    for(int i = 0; i < listCount; i++)
-    //    {
-    //        if (itemList[i] == questName && count > 0)
-    //        {
-    //            itemList.Remove(questName);
-    //            count--;
-    //        }
-    //    }
-       
-    //    PlayerPrefs.SetInt(questName, 3);
-    //}
-}
+
+    public void RemoveItem(string nameToRemove, int amountToRemove)
+    {
+        int counter = amountToRemove;
+        for(int i = slotList.Count - 1; i >= 0; i--)
+        {
+            if (slotList[i].transform.childCount > 0)
+            {
+                if (slotList[i].transform.GetChild(0).name == nameToRemove + "(Clone)" && counter != 0)
+                {
+                    Destroy(slotList[i].transform.GetChild(0).gameObject);
+                    counter--;
+                }
+            }
+        }
+        
+    }}

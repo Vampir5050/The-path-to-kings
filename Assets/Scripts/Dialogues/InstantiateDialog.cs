@@ -21,7 +21,7 @@ public class InstantiateDialog : MonoBehaviour
     {
         textInteraction = buttonInteraction.GetComponent<TextMeshProUGUI>();
 
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("Mushroom");
         dialogue = Dialogue.Load(text);
         skin = Resources.Load("Skin") as GUISkin;
         UpdateAnswers();
@@ -36,11 +36,13 @@ public class InstantiateDialog : MonoBehaviour
 
     void UpdateAnswers()
     {
+        string questName = QuestSystem.Instance.CheckQuest();
         answers.Clear();
         for (int i = 0; i < dialogue.nodes[currentNode].answers.Length; i++)
         {
             if (dialogue.nodes[currentNode].answers[i].QuestName == null || dialogue.nodes[currentNode].answers[i].NeedQuestValue == PlayerPrefs.GetInt(dialogue.nodes[currentNode].answers[i].QuestName))
                 answers.Add(dialogue.nodes[currentNode].answers[i]);
+        
         }
     }
 
@@ -49,7 +51,9 @@ public class InstantiateDialog : MonoBehaviour
         textInteraction.enabled = true;
         if (Input.GetKey(KeyCode.E))
         {
+          
             ShowDialog = true;
+            
         }
            
 
@@ -63,9 +67,11 @@ public class InstantiateDialog : MonoBehaviour
 
     private void OnGUI()
     {
+       
         GUI.skin = skin;
         if (ShowDialog)
         {
+            
             Cursor.visible = true;
             ThirdHeroMovment.LockMovement = true;
             GUI.Box(new Rect(Screen.width / 2 - 300, Screen.height - 300, 600, 250), "");
@@ -77,7 +83,23 @@ public class InstantiateDialog : MonoBehaviour
                     if (answers[i].QuestValue > 0)
                     {
                         PlayerPrefs.SetInt(answers[i].QuestName, answers[i].QuestValue);
-                        QuestSystem.Instance.GetQuest(answers[i].QuestName,answers[i].title, answers[i].description);
+                        if (answers[i].QuestValue == 1)
+                        {
+                            QuestSystem.Instance.GetQuest(answers[i].QuestName, answers[i].title, answers[i].description);
+                        }
+                        if (answers[i].QuestValue == 3)
+                        {
+                            InventorySystem.Instance.RemoveItem(answers[i].QuestName, 5);
+                            QuestSystem.Instance.DestroyQuest();
+                        }
+                    }
+                    if (QuestSystem.Instance.CheckQuest() != "")
+                    {
+                        if (QuestSystem.Instance.CheckQuestComplited())
+                        {
+
+                            PlayerPrefs.SetInt(answers[i].QuestName, 2);
+                        }
                     }
                     if (answers[i].end == "true")
                     {
@@ -87,6 +109,10 @@ public class InstantiateDialog : MonoBehaviour
                     }
                     currentNode = answers[i].nextNode;
                     UpdateAnswers();
+                   
+                    
+                    
+                    
                 }
             }
         }

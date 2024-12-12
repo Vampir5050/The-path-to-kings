@@ -10,7 +10,7 @@ public class QuestSystem : MonoBehaviour
 {
     public static QuestSystem Instance { get; set; }
 
-    List<string> quests = new List<string>();
+    string _questName = "";
     [SerializeField] GameObject image;
     [SerializeField] TextMeshProUGUI imageTitle, imageDescriprion;
 
@@ -29,34 +29,41 @@ public class QuestSystem : MonoBehaviour
     private void Update()
     {
 
-        //CheckingQuestCompletion();
-    }
-
-    //private void CheckingQuestCompletion()
-    //{
-    //    if (quests.Count != 0)
-    //    {
-    //        int count = InventorySystem.Instance.CheckCountItemName(quests[0]);
-    //        if (count == 5)
-    //        {
-    //            PlayerPrefs.SetInt(quests[0], 2);
-    //            InventorySystem.Instance.RemoveItems(count, quests[0]);
-
-    //        }
-    //    }
-       
         
-    //}
+    }
 
     public void GetQuest(string questName, string title,string description)
     {
         if (questName != "")
         {
-            quests.Add(questName);
+            _questName = questName;
             image.SetActive(true);
             imageTitle.text = title;
             imageDescriprion.text = description;
         }
+    }
+    public string CheckQuest()
+    {
+        if (_questName == "")
+            return "";
+        else
+        {
+            return _questName;
+        }
+    }
+    public bool CheckQuestComplited()
+    {
+        if (InventorySystem.Instance.CheckCountItemName(_questName) == 5)
+        {
+            
+            return true;
+        }
+        return false;
+    }
+    public void DestroyQuest()
+    {
+        _questName = "";
+        image.SetActive(false);
     }
 
 }
