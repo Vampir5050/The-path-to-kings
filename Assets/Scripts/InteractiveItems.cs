@@ -18,26 +18,27 @@ public class InteractiveItems : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-
-
         textInteraction.enabled = true;
         if (Input.GetKey(KeyCode.E))
         {
             if (!InventorySystem.Instance.CheckIfFull())
             {
+               
                 InventorySystem.Instance.AddToInventory(ItemName);
                 SoundManager.Instance.PlayPickupSound();
                 Destroy(triger);
                 textInteraction.enabled = false;
+
             }
             
             
         }
 
     }
-
     private void OnTriggerExit(Collider other)
     {
         textInteraction.enabled = false;
     }
+   
+     
 }

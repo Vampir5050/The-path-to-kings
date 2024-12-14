@@ -4,9 +4,22 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class ThirdHeroMovment : MonoBehaviour
 {
+    public static ThirdHeroMovment Instance { get; set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     [SerializeField] Transform _camera;
     [SerializeField] MovmentCharacters _characters;
-    Animator animator;
+    public Animator animator;
 
     Vector3 _direction;
     Quaternion _look;
@@ -20,8 +33,8 @@ public class ThirdHeroMovment : MonoBehaviour
 
     const float DISTANCE_OFFSET_CAMERA = 5f;
 
-    public static bool LockMovement = false;
-    public static bool  walking;
+    public bool LockMovement = false;
+    public static bool walking;
 
 
     void Start()
@@ -55,9 +68,9 @@ public class ThirdHeroMovment : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.D) || Input.GetKeyDown(KeyCode.D))
             {
-                
+
                 animator.SetInteger("State", 4);
-               
+
                 Rotate();
             }
             //else if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -69,15 +82,15 @@ public class ThirdHeroMovment : MonoBehaviour
                 walking = false;
                 SoundManager.Instance.PlayStepsSound();
                 animator.SetInteger("State", 0);
-                
+
             }
-                
+
         }
-       
-        
+
+
     }
 
-   
+
 
     private void Movement()
     {

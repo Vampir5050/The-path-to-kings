@@ -95,7 +95,6 @@ public class InventorySystem : MonoBehaviour
 
     public void AddToInventory(string ItemName)
     {
-
             slotToEquip = NextEmptySlot();
             itemAdd = Instantiate(Resources.Load<GameObject>(ItemName), slotToEquip.transform.position, slotToEquip.transform.rotation);
             itemAdd.transform.SetParent(slotToEquip.transform);

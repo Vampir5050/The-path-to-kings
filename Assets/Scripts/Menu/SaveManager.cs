@@ -110,6 +110,7 @@ public class SaveManager : MonoBehaviour
     {
         SetPlayerData(LoadAllGameData(slotNumber).playerData);
         SoundManager.Instance.startingZoneBGMusic.Play();
+        SoundManager.Instance.startingZoneBGMusic.loop = true;
         isLoading = false;
         DisableLoadingScreen();
     }

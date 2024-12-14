@@ -7,11 +7,12 @@ public class InstantiateDialog : MonoBehaviour
     [SerializeField] TextAsset text;
     [SerializeField] Dialogue dialogue;
     [SerializeField] int currentNode;
-    [SerializeField] GameObject buttonInteraction;
+    [SerializeField] GameObject buttonInteraction, NPC;
     [SerializeField] GUISkin skin;
     public static bool ShowDialog;
     public List<Answer> answers = new List<Answer>();
     TextMeshProUGUI textInteraction;
+    Animator animator;
     
 
 
@@ -25,7 +26,8 @@ public class InstantiateDialog : MonoBehaviour
         dialogue = Dialogue.Load(text);
         skin = Resources.Load("Skin") as GUISkin;
         UpdateAnswers();
-        
+        animator = NPC.gameObject.GetComponent<Animator>();
+
     }
 
     private void Update()
@@ -36,7 +38,6 @@ public class InstantiateDialog : MonoBehaviour
 
     void UpdateAnswers()
     {
-        string questName = QuestSystem.Instance.CheckQuest();
         answers.Clear();
         for (int i = 0; i < dialogue.nodes[currentNode].answers.Length; i++)
         {
@@ -51,8 +52,9 @@ public class InstantiateDialog : MonoBehaviour
         textInteraction.enabled = true;
         if (Input.GetKey(KeyCode.E))
         {
-          
+            animator.SetBool("IsTalking", true);
             ShowDialog = true;
+
             
         }
            
@@ -73,7 +75,7 @@ public class InstantiateDialog : MonoBehaviour
         {
             
             Cursor.visible = true;
-            ThirdHeroMovment.LockMovement = true;
+            ThirdHeroMovment.Instance.LockMovement = true;
             GUI.Box(new Rect(Screen.width / 2 - 300, Screen.height - 300, 600, 250), "");
             GUI.Label(new Rect(Screen.width / 2 - 250, Screen.height - 280, 500, 90), dialogue.nodes[currentNode].NpcText);
             for (int i = 0; i < answers.Count; i++)
@@ -104,8 +106,9 @@ public class InstantiateDialog : MonoBehaviour
                     if (answers[i].end == "true")
                     {
                         ShowDialog = false;
+                        animator.SetBool("IsTalking", false);
                         Cursor.visible = false;
-                        ThirdHeroMovment.LockMovement = false;
+                        ThirdHeroMovment.Instance.LockMovement = false;
                     }
                     currentNode = answers[i].nextNode;
                     UpdateAnswers();

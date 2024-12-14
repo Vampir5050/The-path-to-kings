@@ -53,7 +53,7 @@ public class QuestSystem : MonoBehaviour
     }
     public bool CheckQuestComplited()
     {
-        if (InventorySystem.Instance.CheckCountItemName(_questName) == 5)
+        if (InventorySystem.Instance.CheckCountItemName(_questName) >= 5)
         {
             
             return true;
